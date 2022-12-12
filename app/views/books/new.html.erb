@@ -1,0 +1,9 @@
+<div class=".search-box">
+  <%= form_with url: new_books_path , method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, class: "form-control" %>
+      <%= f.submit '本の題名を検索', class: "form-control btn btn-success" %>
+  <% end %>
+</div>
+<% if @books.present? %>
+  <%= render 'books/rakuten_search', books: @books %>
+<% end %>
