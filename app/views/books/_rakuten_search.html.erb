@@ -1,14 +1,29 @@
 
 
- <table>
+ <table class = "table">
+  <thaed>
+   <tr>
+    <th></th>
+    <th>タイトル</th>
+    <th>出版社</th>
+    <th>著者</th>
+    <th>金額</th>
+   </tr>
+  </thaed>
   <tbody>
-   <% books.each do |book| %>
+   <% bookes.each do |book| %>
     <div class="commic-data">
      <tr>
+      <td>
+       <%= link_to book.item_url do %>
+       　　<%= image_tag book.large_image_url %>
+       <% end %>
+      </td>
       <td><%= book.title %></td>
-      <td><%= image_tag book.large_image_url %></td>
+      <td><%= book.publisher_name %></td>
       <td><%= book.author %></td>
-      <td> <%= book.item_price %></td>
+      <td><%= book.item_price %><%= "円" %></td>
+      <td><%= link_to "詳細ページへ", books_path(book) %></td>
      </tr>
     </div>
    <% end %>
