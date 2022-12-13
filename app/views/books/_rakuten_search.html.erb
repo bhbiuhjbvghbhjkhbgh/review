@@ -1,7 +1,23 @@
 
- <% books.each do |book| %>
-  <div class="commic-data">
-    <%= book.title %>
 
-  </div>
- <% end %>
+ <table>
+  <tbody>
+   <% books.each do |book| %>
+    <div class="commic-data">
+     <tr>
+      <td><%= book.title %></td>
+      <td><%= image_tag book.large_image_url %></td>
+      <td><%= book.author %></td>
+      <td> <%= book.item_price %></td>
+     </tr>
+    </div>
+   <% end %>
+  </tbody>
+ </table>
+
+
+
+
+
+
+
