@@ -1,5 +1,27 @@
+<div class = "container">
+     <div class="row justify-content-center">
+        <span class="border border-primary">
+        </span>
+     </div>
+</div>
+
+          <div class = "center">
  <table class = "table">
-  <tbody></tbody>
+  <tbody>
+   <tr>
+    <th>
+     <%= link_to @book.item_url do %>
+       <%= image_tag @book.small_image_url %>
+     <% end %>
+    </th>
+    <td>
+     <%= @book.title %>
+    </td>
+    <td>
+     <%= @book.author %>
+    </td>
+    <td><%= @book.item_caption %></td>
+   </tr>
+  </tbody>
  </table>
 
-<%= @book.title %>

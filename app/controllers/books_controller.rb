@@ -15,10 +15,13 @@ class BooksController < ApplicationController
          #logger.info "エラーが発生"
          redirect_to new_book_path, alert: e.message
     end
+
     @books.each do |book|
+
       unless Book.all.include?(book)
         book.save
       end
+      #byebug
     end
 
   end
