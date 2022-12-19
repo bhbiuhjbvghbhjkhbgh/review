@@ -20,12 +20,22 @@
           <li class = "nav-item">
             <%= link_to "ログアウト",  destroy_user_session_path, method: :delete %>
           </li>
+          <% if user_signed_in? %>
+　          <li class = "nav-item">
+              <%= link_to "会員詳細", user_path(current_user) %>
+            </li>
+            <li class = "nav-item">
+              <%= link_to "会員編集", edit_user_path(current_user) %>
+            </li>
+          <% end %>
         </ul>
       </nav>
     </header>
     <%= yield %>
   </body>
   <footer>
-
+   <center>
+     <a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_31130.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="311" height="30"/></a>
+   </center>
   </footer>
 </html>

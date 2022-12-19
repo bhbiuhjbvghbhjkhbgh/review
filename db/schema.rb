@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_12_13_113616) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "books", primary_key: "isbn", force: :cascade do |t|
     t.string "title"
     t.bigint "item_number"
     t.string "sales_date"

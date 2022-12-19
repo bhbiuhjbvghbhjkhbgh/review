@@ -1,0 +1,26 @@
+<div class = "container">
+  <div class="row justify-content-center">
+
+    <%= form_with model: @user, url: update_path, method: :patch do |f| %>
+      <div class = "field">
+        <%= f.label :nickname, "ニックネーム" %><br />
+        <%= f.text_field :nickname, autofocus: true %>
+      </div>
+      <div class="field">
+         <%= f.label :sex, "性別" %><br />
+         <%= f.label :man, User.sexes_i18n[:man] %>
+         <%= f.radio_button :sex, User.sexes.key(0) %>
+         <%= f.label :woman, User.sexes_i18n[:woman] %>
+         <%= f.radio_button :sex, User.sexes.key(1) %>
+      </div>
+
+      <div class = "field">
+        <%= f.label :image, "プロフィール画像" %><br />
+        <%= f.file_field :image,  accept: "image/*" %>
+      </div>
+
+
+      <%= f.submit '編集' %>
+    <% end %>
+  </div>
+</div>

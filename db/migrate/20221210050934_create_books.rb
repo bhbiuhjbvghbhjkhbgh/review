@@ -1,6 +1,6 @@
 class CreateBooks < ActiveRecord::Migration[6.1]
   def change
-    create_table :books do |t|
+    create_table :books, id: false do |t|
       t.string :title
       t.bigint :item_number
       t.string :sales_date
@@ -10,6 +10,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :medium_image_url
       t.string :large_image_url
       t.string :item_url
+      t.bigint :isbn, null: false, primary_key: true
 
       t.timestamps
     end
