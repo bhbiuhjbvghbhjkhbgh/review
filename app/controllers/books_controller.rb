@@ -30,6 +30,18 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
   end
 
+  def create
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to book_path(current_user)
+    else
+      render 'show'
+    end
+  end
+
+
+
 
   private
 
@@ -57,5 +69,9 @@ class BooksController < ApplicationController
       item_caption: item_caption,
       item_price: item_price,
     }
+  end
+
+  def post_params
+      params.require(:post).permit(:user_id, :book_id, :star)
   end
 end
