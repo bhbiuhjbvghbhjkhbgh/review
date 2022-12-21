@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  def new
+  end
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to book_path(current_user)
+      redirect_to new_post_path
     else
-      render 'books/show'
+      render 'books/new'
     end
   end
 

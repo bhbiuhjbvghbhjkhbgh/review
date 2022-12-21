@@ -18,3 +18,4 @@ window.$ = window.jQuery = require('jquery');
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require('./jquery.raty')
