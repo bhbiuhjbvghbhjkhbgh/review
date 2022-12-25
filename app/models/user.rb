@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
          has_one_attached :image
          has_many :posts, dependent: :destroy
+         has_many :books, through: :posts
          enum sex: {man: 0, woman: 1}
 end

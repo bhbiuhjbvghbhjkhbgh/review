@@ -24,5 +24,56 @@
    </tr>
   </tbody>
  </table>
- <%= link_to "星", new_post_path %>
+
+   <%= link_to "ブックマークを外す", creater_path(@post_find), method: :delete %>
+
+    <%= link_to "ブックマーク", creater_path(@post_find), method: :post %>
+
+
+
+ <%= form_with model: @post, url: creater_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :book_isbn, value: params[:id] %>
+  <div class="form-group row" id = "star">
+    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :star, id: :review_star %>
+　</div>
+  <script>
+　　　　$('#star').empty();
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'post[star]',
+    half: false,
+  });
+  </script>
+  <div class="form-group row">
+    <%= f.label :comment, '口コミ内容 ', class:'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= f.text_area :comment, class: "form-control", rows: "6",
+        placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。
+まずは投稿してみましょう！投稿してから編集もできますよ！' %>
+    </div>
+  </div>
+  <%= f.submit '投稿する', class:"btn btn-success" %>
+<% end %>
+
+<% @posts.each do |post| %>
+          <div id="star-rate<%= post.id%>">
+          <script>
+            $('#star-rate<%= post.id %>').empty();
+            $('#star-rate<%= post.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= post.star %>,
+            });
+          </script>
+          </div>
+          <%= post.comment %>
+<%end%>
+
+
 

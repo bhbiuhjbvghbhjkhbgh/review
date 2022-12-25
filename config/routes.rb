@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users
   get 'books' => 'books#index', as: 'index'
   patch 'users/:id' => 'users#update', as: 'update'
-  post 'posts' => 'posts#create'
+  post 'books' => 'books#create', as: 'creater'
   root to: 'books#new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
