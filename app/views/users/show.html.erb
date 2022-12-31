@@ -13,8 +13,33 @@
             <%= "性別: " %><%= @user.sex_i18n %>
 
         </span>
-
-
-
     </div>
+    　<div class="d-flex align-items-center justify-content-center">
+        <table class = "table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+              </tr>
+            </thead>
+            <% @bookmarks.each do |bookmark| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to bookmark.book.item_url do %>
+                    <%= image_tag bookmark.book.small_image_url %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= bookmark.book.title %>
+                </td>
+              </tr>
+            </tbody>
+            <% end %>
+        </table>
+      </div>
+
+
+
+
 </div>

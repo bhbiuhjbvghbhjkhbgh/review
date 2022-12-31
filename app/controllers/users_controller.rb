@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @book = Book.find_by(isbn: params[:id])
   end
   def edit
     @user = User.find(params[:id])

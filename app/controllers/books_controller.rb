@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def new
-
+    @user = current_user
     @books = []
     begin
        if params[:keyword].present?
@@ -31,7 +31,8 @@ class BooksController < ApplicationController
   def show
       @book = Book.find_by(isbn: params[:id])
       @post = Post.new
-      @posts = Post.all
+      @posts = @book.posts
+
   end
 
   def create
@@ -39,32 +40,33 @@ class BooksController < ApplicationController
     @post.user_id = current_user.id
     @book = Book.find_by(isbn: params[:post][:book_isbn])
     @post.book = @book
+
     if @post.save
       redirect_to user_path(current_user)
     else
       render 'books/new'
     end
+  end
 
+  def bookmark
 
-    @post = Post.find(params[:post_id])
-    bookmark = @post.books.new(user_id: current_user.id)
+    @book = Book.find_by(isbn: params[:book_isbn])
+    bookmark = @book.bookmarks.new(user_id: current_user.id)
     if bookmark.save
       redirect_to user_path(current_user)
     else
       render 'books/new'
     end
-
   end
-
   def destroy
-      @post_find = Post.find(params[:post_id])
-      bookmark = @post_find.books.find_by(user_id: current_user.id)
-      if bookmark.present?
-         bookmark.destroy
-         redirect_to new_book_path
-      else
-         redirect_to new_post_path
-      end
+    @book = Book.find_by(isbn: params[:book_isbn])
+    bookmark = @book.bookmarks.find_by(user_id: current_user.id)
+    if bookmark.present?
+      bookmark.destroy
+      redirect_to user_path(current_user)
+    else
+      render 'books/new'
+    end
   end
 
 
@@ -75,7 +77,8 @@ class BooksController < ApplicationController
   private
 
   def post_params
-      params.require(:post).permit(:user_id, :book_id, :star, :comment)
+    params.require(:post).permit(:user_id, :book_id, :star, :comment)
+    # params.permit(:user_id, :book_id, :star, :comment)
   end
 
   def book_params
