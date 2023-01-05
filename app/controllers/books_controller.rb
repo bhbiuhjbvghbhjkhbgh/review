@@ -42,7 +42,7 @@ class BooksController < ApplicationController
     @post.book = @book
 
     if @post.save
-      redirect_to user_path(current_user)
+      redirect_to root_path
     else
       render 'books/new'
     end

@@ -1,19 +1,4 @@
-    <div class = "container">
-     <div class="row justify-content-center">
-        <span class="border border-primary">
-
-          <div class = "center">
-            <% if @user.image.attached? %>
-              <%= image_tag @user.image, size: "200x200" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "200x200" %>
-            <% end %>
-          </div>
-            <%= "ニックネーム: " %><%= @user.nickname %><br />
-            <%= "性別: " %><%= @user.sex_i18n %>
-
-        </span>
-    </div>
+   <h1>お気に入り一覧</h1>
     　<div class="d-flex align-items-center justify-content-center">
         <table class = "table">
             <thead>
@@ -33,6 +18,10 @@
                 <td>
                   <%= bookmark.book.title %>
                 </td>
+                <td><%= link_to "詳細", book_path(bookmark.book) %></td>
+              </tr>
+              <tr>
+                <td> <%= link_to "ブックマークから外す", deleter_path(bookmark.book), class: "btn btn-sm m-3 btn-danger", method: :delete %></td>
               </tr>
             </tbody>
             <% end %>

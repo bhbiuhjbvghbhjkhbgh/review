@@ -7,7 +7,7 @@ class Book < ApplicationRecord
 
 
 
-  validates :user_id, uniqueness: { scope: :bookmark_id }
+  #validates :book_id, uniqueness: { scope: :bookmark_id }
 
   def bookmarked_by?(user)
     Bookmark.where(user_id: user).exists?
