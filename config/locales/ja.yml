@@ -4,3 +4,20 @@ ja:
       sex:
         man: "男性"
         woman: "女性"
+  errors:
+    messages:
+      not_saved: "登録できません"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+            password:
+              blank: "を入力してください"
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        nickname: "ニックネーム"

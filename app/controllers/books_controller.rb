@@ -42,8 +42,9 @@ class BooksController < ApplicationController
     @post.book = @book
 
     if @post.save
-      redirect_to root_path
+      redirect_to book_path(params[:post][:book_isbn])
     else
+      @user = current_user
       render 'books/new'
     end
   end

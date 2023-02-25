@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to user_path(current_user)
     else
+      @user = current_user
       render 'books/new'
     end
   end
