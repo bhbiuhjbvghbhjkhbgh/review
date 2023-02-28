@@ -45,7 +45,8 @@ class BooksController < ApplicationController
       redirect_to book_path(params[:post][:book_isbn])
     else
       @user = current_user
-      render 'books/new'
+      @posts = @book.posts
+      render 'books/show'
     end
   end
 
